@@ -2,15 +2,21 @@
 <html lang="en">
 
 <style>
+    * {
+        transition: all 2s;
+    }
+
     .saxon {
         background-color: red;
         margin: 10px;
-
+        display: inline-block;
     }
+
     .viking {
         background-color: blue;
         color: white;
         margin: 10px;
+        display: inline-block;
     }
 </style>
 
@@ -28,6 +34,10 @@
     <div id="vikings">
 
     </div>
+    <button class="saxonsBtn">Attack Vikings</button>
+    <button class="vikingsBtn">Attack Saxons</button>
+    <button class="addPeople">Add More Vikings</button>
+    <div width="100" height="50" class="saxon">Saxon</div>
 </body>
 <script src="./src/viking.js"></script>
 

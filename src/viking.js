@@ -1,4 +1,4 @@
-// Soldier
+// SOLDIER CLASS
 class Soldier {
     constructor(health, strength) {
         this.health = health;
@@ -14,10 +14,10 @@ class Soldier {
     }
 }
 // console.log("rambo")
-let rambo = new Soldier(100, 200)
-rambo.receiveDamage(50)
+// let rambo = new Soldier(100, 200)
+// rambo.receiveDamage(50)
 
-// Viking
+// VIKING CLASS
 class Viking extends Soldier {
     constructor(name, health, strength) {
         super(health, strength)
@@ -38,11 +38,14 @@ class Viking extends Soldier {
     }
 }
 let thor = new Viking("THOR", 200, 300)
-rambo.receiveDamage(thor.attack())
+// rambo.receiveDamage(thor.attack())
 // console.log(thor.battleCry())
 
-// Saxon
+// SAXON CLASS
 class Saxon extends Soldier {
+    constructor(health, strength) {
+        super(health, strength)
+    }
     receiveDamage(damage) {
         this.health -= damage;
         if (this.health > 0) {
@@ -81,7 +84,7 @@ class War {
         let randomViking = this.vikingArmy[Math.floor(Math.random() * this.vikingArmy.length)]
         console.log(randomSaxon, randomViking);
         let resultOfAttack = randomSaxon.receiveDamage(randomViking.attack());
-        if(randomSaxon.health <= 0) {
+        if (randomSaxon.health <= 0) {
             this.saxonArmy.splice(this.saxonArmy.indexOf(randomSaxon), 1);
         }
         return resultOfAttack;
@@ -91,14 +94,14 @@ class War {
         let randomViking = this.vikingArmy[Math.floor(Math.random() * this.vikingArmy.length)]
         console.log(randomSaxon, randomViking);
         let resultOfAttack = randomViking.receiveDamage(randomSaxon.attack());
-        if(randomViking.health <= 0) {
+        if (randomViking.health <= 0) {
             this.vikingArmy.splice(this.vikingArmy.indexOf(randomViking), 1);
         }
         return resultOfAttack;
     }
 
-    showStatus () {
-        if(this.saxonArmy.length == 0) {
+    showStatus() {
+        if (this.saxonArmy.length == 0) {
             return "Vikings have won the war of the century!";
         } else if (this.vikingArmy.length == 0) {
             return "Saxons have fought for their lives and survived another day..."
@@ -107,19 +110,19 @@ class War {
         }
     }
 
-    drawBattlefield () {
+    drawBattlefield() {
         let saxons = '';
         let vikings = '';
-        for(let saxon of this.saxonArmy) {
-            saxons += `<div width=${saxon.health} height=${saxon.strength} class="saxon">Saxon</div>`
+        for (let saxon of this.saxonArmy) {
+            saxons += `<div style=" width:${saxon.health}px; height:${saxon.strength}px;" class="saxon">Saxon</div>`
         }
-        for(let viking of this.vikingArmy) {
-            vikings += `<div width=${viking.health} height=${viking.strength} class="viking">${viking.name}</div>`
+        for (let viking of this.vikingArmy) {
+            vikings += `<div style="width:${viking.health}px; height:${viking.strength}px;" class="viking">${viking.name}</div>`
         }
 
         document.querySelector("#saxons").innerHTML = saxons
         document.querySelector("#vikings").innerHTML = vikings
-        
+
     }
 
 }
@@ -144,5 +147,18 @@ ww3.drawBattlefield();
 
 
 
+document.querySelector(".saxonsBtn").onclick = function (e) {
+    ww3.vikingAttack()
+    ww3.drawBattlefield()
+}
+document.querySelector(".vikingsBtn").onclick = function (e) {
+    ww3.saxonAttack()
+    ww3.drawBattlefield()
+}
 
-
+document.querySelector('.addPeople').onclick = function (e) {
+    let name = prompt("What is your vikings name sir?")
+    let viking = new Viking(name, 100, 100)
+    ww3.addViking(viking)
+    ww3.drawBattlefield();
+}
