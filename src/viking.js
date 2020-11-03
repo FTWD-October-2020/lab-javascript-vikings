@@ -67,4 +67,34 @@ if (coinFlip == true) {
 }
 
 // War
-class War { }
+class War {
+    vikingArmy = []
+    saxonArmy = []
+    addViking(vikingObj) {
+        this.vikingArmy.push(vikingObj)
+    }
+    addSaxon(saxonObj) {
+        this.saxonArmy.push(saxonObj)
+    }
+    vikingAttack() {
+        let randomSaxon = this.saxonArmy[Math.floor(Math.random() * this.saxonArmy.length)]
+        let randomViking = this.vikingArmy[Math.floor(Math.random() * this.vikingArmy.length)]
+        console.log(randomSaxon, randomViking);
+    }
+
+}
+
+let ww3 = new War()
+let Alex = new Viking('alex', 100, 50)
+let John = new Viking('John', 100, 50)
+let Lawrence = new Viking('Lawrence', 100, 50)
+let Saxonite = new Saxon(100, 50)
+let Saxonito = new Saxon(75, 50)
+
+ww3.addSaxon(Saxonito, Saxonite)
+// ww3.addSaxon(Saxonite)
+ww3.addViking(Alex)
+ww3.addViking(John)
+ww3.addViking(Lawrence)
+
+ww3.vikingAttack()
